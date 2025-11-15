@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploreo - Destinations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Inter', sans-serif; background: #fff; color: #111; }
+    .section { max-width: 1200px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+    .section h2 { font-family: 'Merriweather', serif; font-size: 2.2rem; color: #1b1b3a; margin-bottom: 10px; }
+    .section p { max-width: 700px; margin: 0 auto 40px; font-size: 1rem; color: #333; line-height: 1.5; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px; }
+    .card { background: #fff; border-radius: 16px; box-shadow: 0 6px 16px rgba(0,0,0,0.1); overflow: hidden; text-align: left; transition: transform 0.2s; }
+    .card:hover { transform: translateY(-6px); }
+    .card img { width: 100%; height: 200px; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; }
+    .card-content { padding: 15px 20px; }
+    .card-content hr { border: none; border-top: 1px solid #333; margin: 12px 0; }
+    .card-content p { font-size: 0.9rem; margin: 6px 0; }
+    .view-btn { display: block; margin: 15px auto; background: #fff; border: none; font-weight: 600; cursor: pointer; color: #000; }
+    .all-btn { display: inline-block; padding: 12px 24px; border-radius: 10px; background: #111; color: #fff; font-size: 1rem; font-weight: 600; border: none; cursor: pointer; text-decoration: none; }
+    .all-btn:hover { background: #333; }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <h2>Featured Destinations</h2>
+    <p>Discover The World’s Most Spectacular Destinations, Carefully Curated For The Ultimate Travel Experience</p>
+    <div class="cards">
+      <div class="card">
+        <img src="https://wanderon-images.gumlet.io/blogs/new/2024/01/featured-1-1.jpg" alt="Singapore">
+        <div class="card-content">
+          <hr>
+          <p>5 Star Hotel</p>
+          <p>1 Activity</p>
+          <p>Selected Meals</p>
+          <p>Airport Pickup and Drop</p>
+          <button class="view-btn">View Details</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOQmNpxrD9ccoxZ3Q23LOOE93wLr_tMR7LFQ&s" alt="Tokyo">
+        <div class="card-content">
+          <hr>
+          <p>5 Star Hotel</p>
+          <p>1 Activity</p>
+          <p>Selected Meals</p>
+          <p>Airport Pickup and Drop</p>
+          <button class="view-btn">View Details</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://res.cloudinary.com/dtljonz0f/image/upload/shutterstock_329662223_ss_non-editorial_3_csm8lw" alt="New York">
+        <div class="card-content">
+          <hr>
+          <p>5 Star Hotel</p>
+          <p>1 Activity</p>
+          <p>Selected Meals</p>
+          <p>Airport Pickup and Drop</p>
+          <button class="view-btn">View Details</button>
+        </div>
+      </div>
+    </div>
+    <!-- 👇 Redirects to 3rd page -->
+    <a href="all-destinations.html" class="all-btn">View All Destinations</a>
+  </section>
+</body>
+</html>

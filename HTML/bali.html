@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bali Packages - Exploreo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #222;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    header h1 a {
+      text-decoration: none;
+      color: #222;
+    }
+
+    header div {
+      text-align: right;
+    }
+
+    header div h2 {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    header div p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-header span {
+      background: #f5f5f5;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    ul li {
+      margin: 0.2rem 0;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.6rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .price span {
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="index.html">Exploreo</a></h1>
+    <div>
+      <h2>Bali Packages</h2>
+      <p>Discover temples, beaches and more</p>
+    </div>
+  </header>
+
+  <section class="packages">
+    <div class="card">
+      <img src="https://traveltagline.com/wp-content/uploads/2021/07/slide-3-800x450.jpg" alt="Serene Bali">
+      <div class="card-content">
+        <div class="card-header">
+          <span>Serene</span>
+          <span>6N/7D</span>
+        </div>
+        <ul>
+          <li>5 Star Hotel</li>
+          <li>1 Activity</li>
+          <li>Selected Meals</li>
+          <li>Airport Pickup and Drop</li>
+          <li>Visa</li>
+        </ul>
+        <div class="price">₹28,950 <span>/ per person</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://jwc.gotra-resources.my.id/web-upload/1747109964-13-05-2025-1uQkTCr9GtysKV5AHxleNISjDqZnEvbP.webp" alt="Adventure Bali">
+      <div class="card-content">
+        <div class="card-header">
+          <span>Adventure</span>
+          <span>6N/7D</span>
+        </div>
+        <ul>
+          <li>5 Star Hotel</li>
+          <li>1 Activity</li>
+          <li>Selected Meals</li>
+          <li>Airport Pickup and Drop</li>
+          <li>Visa</li>
+        </ul>
+        <div class="price">₹28,950 <span>/ per person</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/41/b8/2c/premium-villas-seminyak.jpg?w=900&h=-1&s=1" alt="Bali Premium">
+      <div class="card-content">
+        <div class="card-header">
+          <span>Premium</span>
+          <span>6N/7D</span>
+        </div>
+        <ul>
+          <li>5 Star Hotel</li>
+          <li>1 Activity</li>
+          <li>Selected Meals</li>
+          <li>Airport Pickup and Drop</li>
+          <li>Visa</li>
+        </ul>
+        <div class="price">₹28,950 <span>/ per person</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://www.goatsontheroad.com/wp-content/uploads/2019/08/best-beaches-in-bali.jpg" alt="Bali Beaches">
+      <div class="card-content">
+        <div class="card-header">
+          <span>Beaches</span>
+          <span>6N/7D</span>
+        </div>
+        <ul>
+          <li>5 Star Hotel</li>
+          <li>1 Activity</li>
+          <li>Selected Meals</li>
+          <li>Airport Pickup and Drop</li>
+          <li>Visa</li>
+        </ul>
+        <div class="price">₹28,950 <span>/ per person</span></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

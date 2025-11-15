@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploreo Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4 md:p-0">
+    <!-- Main container -->
+    <div class="bg-white rounded-xl shadow-lg flex flex-col md:flex-row w-full max-w-5xl">
+
+        <!-- Left column: Login form -->
+        <div class="p-8 md:p-12 lg:p-16 flex-1 flex flex-col justify-center">
+            <div class="max-w-md mx-auto w-full">
+                <h1 class="text-4xl font-bold mb-2">Exploreo</h1>
+                <h2 class="text-2xl text-gray-800 mb-6">Welcome to Our Community</h2>
+                <p class="text-gray-600 mb-8 text-sm">Already have an account? <a href="#" class="text-blue-600 hover:underline">Log in</a></p>
+
+                <form action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Enter your email">
+                    </div>
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                        <input type="text" id="username" name="username" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Enter your username">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <input type="password" id="password" name="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Enter your password">
+                            <span id="toggle-password" class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 cursor-pointer text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.575 3.01 9.963 7.822.14.451.14.939 0 1.391C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.575-3.01-9.963-7.822z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </span>
+                        </div>
+                        <ul class="text-xs text-gray-500 mt-2 space-y-1">
+                            <li class="flex items-center"><span class="w-2 h-2 rounded-full mr-2 bg-gray-400"></span>Use 8 or more characters</li>
+                            <li class="flex items-center"><span class="w-2 h-2 rounded-full mr-2 bg-gray-400"></span>One Uppercase character</li>
+                            <li class="flex items-center"><span class="w-2 h-2 rounded-full mr-2 bg-gray-400"></span>One lowercase character</li>
+                            <li class="flex items-center"><span class="w-2 h-2 rounded-full mr-2 bg-gray-400"></span>One special character</li>
+                            <li class="flex items-center"><span class="w-2 h-2 rounded-full mr-2 bg-gray-400"></span>One number</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="receive_emails" name="receive_emails" type="checkbox" class="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500">
+                        <label for="receive_emails" class="ml-2 block text-sm text-gray-900">
+                            I want to receive emails about the packages, future updates and package discounts
+                        </label>
+                    </div>
+                    <p class="text-xs text-gray-500 leading-tight">By creating an account, you agree to the <a href="#" class="text-blue-600 hover:underline">Terms of use</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>.</p>
+                    <div>
+                        <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150 ease-in-out">
+                            Create an account
+                        </button>
+                    </div>
+                </form>
+                <p class="text-sm text-gray-600 mt-6 text-center">Already have an account? <a href="#" class="text-blue-600 hover:underline">Log in</a></p>
+            </div>
+        </div>
+
+        <!-- Right column: Image -->
+        <div class="hidden md:block flex-1 bg-cover bg-center rounded-r-xl" style="background-image: url('https://content.skyscnr.com/m/3da4b3862e6f3bc3/original/GettyImages-1130851233.jpg?resize=2560px:1700px');">
+            <!-- This is a placeholder image. You can replace it with your own. -->
+            <img src="https://content.skyscnr.com/m/3da4b3862e6f3bc3/original/GettyImages-1130851233.jpg?resize=2560px:1700px" alt="Scenic mountain landscape" class="w-full h-full object-cover rounded-r-xl" onerror="this.onerror=null;this.src='https://placehold.co/1000x1200/c7d2fe/ffffff?text=Scenic+Mountain+Landscape';">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePassword = document.getElementById('toggle-password');
+            const passwordInput = document.getElementById('password');
+
+            togglePassword.addEventListener('click', () => {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // You can change the icon here if you want
+                const icon = togglePassword.querySelector('svg');
+                if (type === 'password') {
+                    icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.575 3.01 9.963 7.822.14.451.14.939 0 1.391C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.575-3.01-9.963-7.822z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`;
+                } else {
+                    icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.958 12h2.023a1.5 1.5 0 011.432 1.706C4.851 17.653 7.89 21 12 21c3.55 0 6.5-2.062 8-5.753m-1.474-6.345c-2.31-4.04-5.385-6.736-9.102-7.23m-1.396.65a.75.75 0 00-.704-.704l-1.625-.407c-.424-.106-.777.23-.777.654L1 17.25M4.25 17.25c.34-.616.797-1.293 1.31-2.022M12 17.25a4.5 4.5 0 004.5-4.5h-9a4.5 4.5 0 004.5 4.5" />`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

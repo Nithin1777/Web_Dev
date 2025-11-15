@@ -1,0 +1,30 @@
+[
+  {
+    "id": "bali",
+    "name": "Bali",
+    "summary": "Temples, beaches and rice terraces.",
+    "image": "https://media.istockphoto.com/id/675172642/photo/pura-ulun-danu-bratan-temple-in-bali.jpg?s=612x612&w=0&k=20&c=_MPdmDviIyhldqhf7t6s63C-bZbTGfNHMlJP9SIa8Y0=",
+    "details": "Bali is known for its forested volcanic mountains, iconic rice paddies, beaches and coral reefs. A top destination for culture and relaxation."
+  },
+  {
+    "id": "singapore",
+    "name": "Singapore",
+    "summary": "Modern city, gardens and food.",
+    "image": "https://wanderon-images.gumlet.io/blogs/new/2024/01/featured-1-1.jpg",
+    "details": "Singapore offers a vibrant mix of culture, cutting-edge architecture and fantastic food markets."
+  },
+  {
+    "id": "tokyo",
+    "name": "Tokyo",
+    "summary": "High-tech city with rich tradition.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOQmNpxrD9ccoxZ3Q23LOOE93wLr_tMR7LFQ&s",
+    "details": "Tokyo blends futuristic skyscrapers with historic temples, an unrivaled pop-culture scene and fantastic cuisine."
+  },
+  {
+    "id": "newyork",
+    "name": "New York",
+    "summary": "The city that never sleeps.",
+    "image": "https://res.cloudinary.com/dtljonz0f/image/upload/shutterstock_329662223_ss_non-editorial_3_csm8lw",
+    "details": "New York is famous for its skyline, museums, theatre scene and diverse neighbourhoods."
+  }
+]
