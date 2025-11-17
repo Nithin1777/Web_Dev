@@ -1,0 +1,68 @@
+<%- include('partials/header') %>
+</head>
+<body>
+  <div class="hero">
+    <%- include('partials/navbar') %>
+
+    <!-- Hero content -->
+    <div class="hero-content">
+      <h1>Discover Your Next Adventure</h1>
+      <p class="hero-subtitle">Find the perfect activities for your destination and season</p>
+      
+      <div class="search-box">
+        <form action="/activities" method="GET" class="search-form">
+          <div class="search-row">
+            <input 
+              id="location-input" 
+              name="location"
+              type="text" 
+              placeholder="Where to? (e.g., Bali, Paris, Tokyo)"
+              autocomplete="off"
+            >
+            <select id="month-input" name="month" class="month-select">
+              <option value="">Any Month</option>
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+          </div>
+          <button type="submit" id="home-search-btn">Search Activities</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2>Why Choose Exploreo?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Global Destinations</h3>
+          <p>Explore activities from destinations around the world</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Seasonal Planning</h3>
+          <p>Find the best activities for each month of the year</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Personalized Results</h3>
+          <p>Get recommendations tailored to your preferences</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

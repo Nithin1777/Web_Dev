@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Testing - Seasonal Travel Planner</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    h1 {
+      color: #1b1b3a;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+    .api-section {
+      margin-bottom: 40px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 25px;
+      background: #f8f9fa;
+    }
+    .api-section h2 {
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+    .endpoint {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border-left: 4px solid #667eea;
+    }
+    .method {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin-right: 10px;
+    }
+    .url {
+      font-family: 'Courier New', monospace;
+      color: #333;
+      font-size: 0.95rem;
+    }
+    .test-form {
+      display: grid;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+    label {
+      font-weight: 600;
+      color: #333;
+    }
+    input, select, button {
+      padding: 10px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+    }
+    .response {
+      margin-top: 20px;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    .response pre {
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    .loading {
+      color: #667eea;
+      font-weight: 600;
+    }
+    .error {
+      color: #ff4444;
+      font-weight: 600;
+    }
+    .success {
+      color: #00C851;
+      font-weight: 600;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+    .status-200 { background: #00C851; color: white; }
+    .status-404 { background: #ffbb33; color: white; }
+    .status-500 { background: #ff4444; color: white; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 API Testing Interface</h1>
+    <p class="subtitle">Test the Seasonal Travel Planner API endpoints</p>
+
+    <!-- Search Activities Endpoint -->
+    <div class="api-section">
+      <h2>Search Activities</h2>
+      <div class="endpoint">
+        <span class="method">GET</span>
+        <span class="url">/api/activities/search</span>
+      </div>
+      <p style="margin: 15px 0; color: #666;">Search for activities by location and/or month.</p>
+      
+      <form class="test-form" onsubmit="testSearch(event)">
+        <div class="form-row">
+          <label for="search-location">Location:</label>
+          <input type="text" id="search-location" placeholder="e.g., Bali, Paris, Tokyo">
+        </div>
+        <div class="form-row">
+          <label for="search-month">Month:</label>
+          <select id="search-month">
+            <option value="">Any Month</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+        </div>
+        <button type="submit">🔍 Test Search Endpoint</button>
+      </form>
+      <div id="search-response" class="response" style="display: none;"></div>
+    </div>
+
+    <!-- Get All Activities Endpoint -->
+    <div class="api-section">
+      <h2>Get All Activities</h2>
+      <div class="endpoint">
+        <span class="method">GET</span>
+        <span class="url">/api/activities/all</span>
+      </div>
+      <p style="margin: 15px 0; color: #666;">Retrieve all activities from the database.</p>
+      
+      <button onclick="testAllActivities()">📋 Test Get All Endpoint</button>
+      <div id="all-response" class="response" style="display: none;"></div>
+    </div>
+
+    <!-- Get Locations Endpoint -->
+    <div class="api-section">
+      <h2>Get Unique Locations</h2>
+      <div class="endpoint">
+        <span class="method">GET</span>
+        <span class="url">/api/locations</span>
+      </div>
+      <p style="margin: 15px 0; color: #666;">Get a list of all unique locations in the database.</p>
+      
+      <button onclick="testLocations()">📍 Test Locations Endpoint</button>
+      <div id="locations-response" class="response" style="display: none;"></div>
+    </div>
+  </div>
+
+  <script>
+    function formatJSON(data) {
+      return JSON.stringify(data, null, 2);
+    }
+
+    function showResponse(elementId, data, status) {
+      const element = document.getElementById(elementId);
+      element.style.display = 'block';
+      
+      const statusClass = status >= 200 && status < 300 ? 'status-200' : 
+                          status >= 400 && status < 500 ? 'status-404' : 'status-500';
+      
+      element.innerHTML = `
+        <span class="status-badge ${statusClass}">Status: ${status}</span>
+        <pre>${formatJSON(data)}</pre>
+      `;
+    }
+
+    function showLoading(elementId) {
+      const element = document.getElementById(elementId);
+      element.style.display = 'block';
+      element.innerHTML = '<span class="loading">⏳ Loading...</span>';
+    }
+
+    function showError(elementId, error) {
+      const element = document.getElementById(elementId);
+      element.style.display = 'block';
+      element.innerHTML = `<span class="error">❌ Error: ${error}</span>`;
+    }
+
+    async function testSearch(event) {
+      event.preventDefault();
+      
+      const location = document.getElementById('search-location').value;
+      const month = document.getElementById('search-month').value;
+      
+      const params = new URLSearchParams();
+      if (location) params.append('location', location);
+      if (month) params.append('month', month);
+      
+      const url = `/api/activities/search?${params.toString()}`;
+      
+      showLoading('search-response');
+      
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        showResponse('search-response', data, response.status);
+      } catch (error) {
+        showError('search-response', error.message);
+      }
+    }
+
+    async function testAllActivities() {
+      showLoading('all-response');
+      
+      try {
+        const response = await fetch('/api/activities/all');
+        const data = await response.json();
+        showResponse('all-response', data, response.status);
+      } catch (error) {
+        showError('all-response', error.message);
+      }
+    }
+
+    async function testLocations() {
+      showLoading('locations-response');
+      
+      try {
+        const response = await fetch('/api/locations');
+        const data = await response.json();
+        showResponse('locations-response', data, response.status);
+      } catch (error) {
+        showError('locations-response', error.message);
+      }
+    }
+
+    // Pre-fill with example values
+    document.getElementById('search-location').value = 'Bali';
+    document.getElementById('search-month').value = 'February';
+  </script>
+</body>
+</html>

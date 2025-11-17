@@ -1,0 +1,125 @@
+<%- include('partials/header') %>
+</head>
+<body>
+  <div class="page-header">
+    <%- include('partials/navbar') %>
+  </div>
+
+  <section class="activities-section">
+    <div class="container">
+      <h1>Activity Search</h1>
+      <p class="subtitle">Find the perfect activities for your destination and travel season</p>
+
+      <!-- Search Form -->
+      <div class="search-container">
+        <form action="/activities" method="GET" class="activity-search-form">
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input 
+              type="text" 
+              id="location" 
+              name="location" 
+              placeholder="e.g., Bali, Paris, Tokyo"
+              value="<%= location %>"
+              class="form-input"
+            >
+          </div>
+          
+          <div class="form-group">
+            <label for="month">Month</label>
+            <select id="month" name="month" class="form-input">
+              <option value="">Any Month</option>
+              <option value="January" <%= month === 'January' ? 'selected' : '' %>>January</option>
+              <option value="February" <%= month === 'February' ? 'selected' : '' %>>February</option>
+              <option value="March" <%= month === 'March' ? 'selected' : '' %>>March</option>
+              <option value="April" <%= month === 'April' ? 'selected' : '' %>>April</option>
+              <option value="May" <%= month === 'May' ? 'selected' : '' %>>May</option>
+              <option value="June" <%= month === 'June' ? 'selected' : '' %>>June</option>
+              <option value="July" <%= month === 'July' ? 'selected' : '' %>>July</option>
+              <option value="August" <%= month === 'August' ? 'selected' : '' %>>August</option>
+              <option value="September" <%= month === 'September' ? 'selected' : '' %>>September</option>
+              <option value="October" <%= month === 'October' ? 'selected' : '' %>>October</option>
+              <option value="November" <%= month === 'November' ? 'selected' : '' %>>November</option>
+              <option value="December" <%= month === 'December' ? 'selected' : '' %>>December</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="search-btn">Search Activities</button>
+        </form>
+      </div>
+
+      <!-- Results Section -->
+      <div class="results-section">
+        <% if (searchPerformed) { %>
+          <div class="results-header">
+            <h2>Search Results</h2>
+            <% if (location || month) { %>
+              <p class="search-info">
+                Showing activities 
+                <% if (location) { %>in <strong><%= location %></strong><% } %>
+                <% if (location && month) { %> during <% } %>
+                <% if (month) { %><strong><%= month %></strong><% } %>
+              </p>
+            <% } %>
+            <p class="results-count">Found <%= activities.length %> activities</p>
+          </div>
+
+          <% if (noResults) { %>
+            <div class="no-results">
+              <div class="no-results-icon">🔍</div>
+              <h3>No activities found</h3>
+              <p>Try adjusting your search criteria or browse all activities</p>
+              <a href="/activities" class="btn-secondary">Clear Search</a>
+            </div>
+          <% } else { %>
+            <div class="activities-grid">
+              <% activities.forEach(activity => { %>
+                <div class="activity-card">
+                  <div class="activity-header">
+                    <h3 class="activity-name"><%= activity.name %></h3>
+                    <span class="activity-category"><%= activity.category || 'Activity' %></span>
+                  </div>
+                  <div class="activity-body">
+                    <p class="activity-description"><%= activity.description %></p>
+                    <div class="activity-details">
+                      <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span class="detail-text"><%= activity.location %></span>
+                      </div>
+                      <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <span class="detail-text"><%= activity.seasonal_months %></span>
+                      </div>
+                      <% if (activity.price) { %>
+                        <div class="detail-item">
+                          <span class="detail-icon">💰</span>
+                          <span class="detail-text">$<%= activity.price %></span>
+                        </div>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+          <% } %>
+        <% } else { %>
+          <div class="welcome-message">
+            <div class="welcome-icon">🌟</div>
+            <h3>Start Your Search</h3>
+            <p>Use the search form above to find activities by location and month</p>
+            <div class="quick-searches">
+              <h4>Quick Searches:</h4>
+              <div class="quick-search-links">
+                <a href="/activities?location=Bali&month=February" class="quick-link">Bali in February</a>
+                <a href="/activities?location=Paris&month=June" class="quick-link">Paris in June</a>
+                <a href="/activities?location=Tokyo&month=March" class="quick-link">Tokyo in March</a>
+                <a href="/activities?location=London" class="quick-link">London (All Months)</a>
+              </div>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

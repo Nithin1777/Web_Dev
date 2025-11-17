@@ -1,204 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bali Packages - Exploreo</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fafafa;
-      color: #222;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    header h1 a {
-      text-decoration: none;
-      color: #222;
-    }
-
-    header div {
-      text-align: right;
-    }
-
-    header div h2 {
-      margin: 0;
-      font-size: 1.3rem;
-      font-weight: bold;
-    }
-
-    header div p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .packages {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.2s ease-in-out;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 1rem;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card-header span {
-      background: #f5f5f5;
-      padding: 0.3rem 0.6rem;
-      border-radius: 5px;
-      font-size: 0.9rem;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 1rem 0;
-      font-size: 0.9rem;
-      color: #444;
-    }
-
-    ul li {
-      margin: 0.2rem 0;
-    }
-
-    .price {
-      font-weight: bold;
-      font-size: 1.1rem;
-      padding: 0.6rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .price span {
-      color: #222;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-bit SIPO Data Receiver</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .wire {
+            stroke: #000;
+            stroke-width: 2;
+            fill: none;
+        }
+        .wire-arrow {
+            stroke: #000;
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+        .dot {
+            fill: #000;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <h1><a href="index.html">Exploreo</a></h1>
-    <div>
-      <h2>Bali Packages</h2>
-      <p>Discover temples, beaches and more</p>
-    </div>
-  </header>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">4-bit SIPO Data Receiver with Packet Valid Indicator</h1>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <svg viewBox="0 0 1600 900" class="w-full h-auto">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#000" />
+                    </marker>
+                </defs>
 
-  <section class="packages">
-    <div class="card">
-      <img src="https://traveltagline.com/wp-content/uploads/2021/07/slide-3-800x450.jpg" alt="Serene Bali">
-      <div class="card-content">
-        <div class="card-header">
-          <span>Serene</span>
-          <span>6N/7D</span>
-        </div>
-        <ul>
-          <li>5 Star Hotel</li>
-          <li>1 Activity</li>
-          <li>Selected Meals</li>
-          <li>Airport Pickup and Drop</li>
-          <li>Visa</li>
-        </ul>
-        <div class="price">₹28,950 <span>/ per person</span></div>
-      </div>
-    </div>
+                <!-- Input Labels -->
+                <text x="30" y="180" class="text-sm font-bold fill-blue-600">DATA_IN</text>
+                <line x1="100" y1="175" x2="180" y2="175" class="wire-arrow" />
 
-    <div class="card">
-      <img src="https://jwc.gotra-resources.my.id/web-upload/1747109964-13-05-2025-1uQkTCr9GtysKV5AHxleNISjDqZnEvbP.webp" alt="Adventure Bali">
-      <div class="card-content">
-        <div class="card-header">
-          <span>Adventure</span>
-          <span>6N/7D</span>
-        </div>
-        <ul>
-          <li>5 Star Hotel</li>
-          <li>1 Activity</li>
-          <li>Selected Meals</li>
-          <li>Airport Pickup and Drop</li>
-          <li>Visa</li>
-        </ul>
-        <div class="price">₹28,950 <span>/ per person</span></div>
-      </div>
-    </div>
+                <text x="50" y="750" class="text-sm font-bold fill-green-600">SYNC</text>
+                <line x1="100" y1="745" x2="160" y2="745" class="wire" />
+                <line x1="160" y1="745" x2="160" y2="100" class="wire" />
+                <circle cx="160" cy="360" r="4" class="dot" />
+                <circle cx="160" cy="460" r="4" class="dot" />
+                <circle cx="160" cy="560" r="4" class="dot" />
+                <circle cx="160" cy="660" r="4" class="dot" />
 
-    <div class="card">
-      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/41/b8/2c/premium-villas-seminyak.jpg?w=900&h=-1&s=1" alt="Bali Premium">
-      <div class="card-content">
-        <div class="card-header">
-          <span>Premium</span>
-          <span>6N/7D</span>
-        </div>
-        <ul>
-          <li>5 Star Hotel</li>
-          <li>1 Activity</li>
-          <li>Selected Meals</li>
-          <li>Airport Pickup and Drop</li>
-          <li>Visa</li>
-        </ul>
-        <div class="price">₹28,950 <span>/ per person</span></div>
-      </div>
-    </div>
+                <text x="50" y="820" class="text-sm font-bold fill-purple-600">CLK</text>
+                <line x1="100" y1="815" x2="180" y2="815" class="wire" />
+                <line x1="180" y1="815" x2="180" y2="100" class="wire" />
+                <circle cx="180" cy="335" r="4" class="dot" />
+                <circle cx="180" cy="435" r="4" class="dot" />
+                <circle cx="180" cy="535" r="4" class="dot" />
+                <circle cx="180" cy="635" r="4" class="dot" />
 
-    <div class="card">
-      <img src="https://www.goatsontheroad.com/wp-content/uploads/2019/08/best-beaches-in-bali.jpg" alt="Bali Beaches">
-      <div class="card-content">
-        <div class="card-header">
-          <span>Beaches</span>
-          <span>6N/7D</span>
+                <!-- Q3 Stage (MSB) -->
+                <g id="q3-stage">
+                    <!-- MUX -->
+                    <path d="M 250 140 L 290 150 L 290 210 L 250 220 Z" class="fill-amber-100 stroke-gray-800 stroke-2" />
+                    <text x="260" y="165" class="text-xs fill-gray-700">0</text>
+                    <text x="260" y="205" class="text-xs fill-gray-700">1</text>
+                    <text x="300" y="185" class="text-xs fill-gray-700">MUX</text>
+                    
+                    <line x1="180" y1="175" x2="230" y2="175" class="wire" />
+                    <line x1="230" y1="175" x2="230" y2="195" class="wire" />
+                    <line x1="230" y1="195" x2="250" y2="195" class="wire" />
+                    
+                    <line x1="250" y1="165" x2="220" y2="165" class="wire" />
+                    <line x1="220" y1="165" x2="220" y2="90" class="wire" />
+                    <line x1="220" y1="90" x2="540" y2="90" class="wire" />
+                    <line x1="540" y1="90" x2="540" y2="305" class="wire" />
+                    
+                    <line x1="160" y1="360" x2="270" y2="360" class="wire" />
+                    <line x1="270" y1="360" x2="270" y2="220" class="wire" />
+                    
+                    <line x1="290" y1="180" x2="350" y2="180" class="wire" />
+                    <line x1="350" y1="180" x2="350" y2="295" class="wire" />
+                    <line x1="350" y1="295" x2="380" y2="295" class="wire-arrow" />
+                    
+                    <!-- D Flip-Flop -->
+                    <rect x="380" y="270" width="100" height="70" class="fill-blue-50 stroke-gray-800 stroke-2" rx="5" />
+                    <text x="430" y="300" class="text-sm font-bold fill-gray-800 text-anchor-middle">D FF</text>
+                    <text x="430" y="320" class="text-xs fill-gray-600 text-anchor-middle">Q3</text>
+                    <text x="390" y="300" class="text-xs fill-gray-600">D</text>
+                    <text x="465" y="300" class="text-xs fill-gray-600">Q</text>
+                    <text x="390" y="330" class="text-xs fill-gray-600">CLK</text>
+                    
+                    <line x1="180" y1="335" x2="380" y2="335" class="wire" />
+                    
+                    <line x1="480" y1="295" x2="540" y2="295" class="wire" />
+                    <line x1="540" y1="295" x2="540" y2="305" class="wire" />
+                    <circle cx="540" cy="305" r="4" class="dot" />
+                    
+                    <text x="560" y="310" class="text-sm font-bold fill-gray-800">Q3</text>
+                    <line x1="540" y1="305" x2="540" y2="395" class="wire" />
+                </g>
+
+                <!-- Q2 Stage -->
+                <g id="q2-stage">
+                    <path d="M 250 370 L 290 380 L 290 440 L 250 450 Z" class="fill-amber-100 stroke-gray-800 stroke-2" />
+                    <text x="260" y="395" class="text-xs fill-gray-700">0</text>
+                    <text x="260" y="435" class="text-xs fill-gray-700">1</text>
+                    <text x="300" y="415" class="text-xs fill-gray-700">MUX</text>
+                    
+                    <line x1="540" y1="395" x2="230" y2="395" class="wire" />
+                    <line x1="230" y1="395" x2="230" y2="425" class="wire" />
+                    <line x1="230" y1="425" x2="250" y2="425" class="wire" />
+                    
+                    <line x1="250" y1="395" x2="210" y2="395" class="wire" />
+                    <line x1="210" y1="395" x2="210" y2="320" class="wire" />
+                    <line x1="210" y1="320" x2="630" y2="320" class="wire" />
+                    <line x1="630" y1="320" x2="630" y2="525" class="wire" />
+                    
+                    <line x1="160" y1="460" x2="270" y2="460" class="wire" />
+                    <line x1="270" y1="460" x2="270" y2="450" class="wire" />
+                    
+                    <line x1="290" y1="410" x2="350" y2="410" class="wire" />
+                    <line x1="350" y1="410" x2="350" y2="515" class="wire" />
+                    <line x1="350" y1="515" x2="380" y2="515" class="wire-arrow" />
+                    
+                    <rect x="380" y="490" width="100" height="70" class="fill-blue-50 stroke-gray-800 stroke-2" rx="5" />
+                    <text x="430" y="520" class="text-sm font-bold fill-gray-800 text-anchor-middle">D FF</text>
+                    <text x="430" y="540" class="text-xs fill-gray-600 text-anchor-middle">Q2</text>
+                    <text x="390" y="520" class="text-xs fill-gray-600">D</text>
+                    <text x="465" y="520" class="text-xs fill-gray-600">Q</text>
+                    <text x="390" y="550" class="text-xs fill-gray-600">CLK</text>
+                    
+                    <line x1="180" y1="435" x2="340" y2="435" class="wire" />
+                    <line x1="340" y1="435" x2="340" y2="555" class="wire" />
+                    <line x1="340" y1="555" x2="380" y2="555" class="wire" />
+                    
+                    <line x1="480" y1="515" x2="630" y2="515" class="wire" />
+                    <line x1="630" y1="515" x2="630" y2="525" class="wire" />
+                    <circle cx="630" cy="525" r="4" class="dot" />
+                    
+                    <text x="650" y="530" class="text-sm font-bold fill-gray-800">Q2</text>
+                    <line x1="630" y1="525" x2="630" y2="615" class="wire" />
+                </g>
+
+                <!-- Q1 Stage -->
+                <g id="q1-stage">
+                    <path d="M 750 370 L 790 380 L 790 440 L 750 450 Z" class="fill-amber-100 stroke-gray-800 stroke-2" />
+                    <text x="760" y="395" class="text-xs fill-gray-700">0</text>
+                    <text x="760" y="435" class="text-xs fill-gray-700">1</text>
+                    <text x="800" y="415" class="text-xs fill-gray-700">MUX</text>
+                    
+                    <line x1="630" y1="615" x2="730" y2="615" class="wire" />
+                    <line x1="730" y1="615" x2="730" y2="425" class="wire" />
+                    <line x1="730" y1="425" x2="750" y2="425" class="wire" />
+                    
+                    <line x1="750" y1="395" x2="710" y2="395" class="wire" />
+                    <line x1="710" y1="395" x2="710" y2="320" class="wire" />
+                    <line x1="710" y1="320" x2="1130" y2="320" class="wire" />
+                    <line x1="1130" y1="320" x2="1130" y2="525" class="wire" />
+                    
+                    <line x1="160" y1="560" x2="770" y2="560" class="wire" />
+                    <line x1="770" y1="560" x2="770" y2="450" class="wire" />
+                    
+                    <line x1="790" y1="410" x2="850" y2="410" class="wire" />
+                    <line x1="850" y1="410" x2="850" y2="515" class="wire" />
+                    <line x1="850" y1="515" x2="880" y2="515" class="wire-arrow" />
+                    
+                    <rect x="880" y="490" width="100" height="70" class="fill-blue-50 stroke-gray-800 stroke-2" rx="5" />
+                    <text x="930" y="520" class="text-sm font-bold fill-gray-800 text-anchor-middle">D FF</text>
+                    <text x="930" y="540" class="text-xs fill-gray-600 text-anchor-middle">Q1</text>
+                    <text x="890" y="520" class="text-xs fill-gray-600">D</text>
+                    <text x="965" y="520" class="text-xs fill-gray-600">Q</text>
+                    <text x="890" y="550" class="text-xs fill-gray-600">CLK</text>
+                    
+                    <line x1="180" y1="535" x2="840" y2="535" class="wire" />
+                    <line x1="840" y1="535" x2="840" y2="555" class="wire" />
+                    <line x1="840" y1="555" x2="880" y2="555" class="wire" />
+                    
+                    <line x1="980" y1="515" x2="1130" y2="515" class="wire" />
+                    <line x1="1130" y1="515" x2="1130" y2="525" class="wire" />
+                    <circle cx="1130" cy="525" r="4" class="dot" />
+                    
+                    <text x="1150" y="530" class="text-sm font-bold fill-gray-800">Q1</text>
+                    <line x1="1130" y1="525" x2="1130" y2="615" class="wire" />
+                </g>
+
+                <!-- Q0 Stage (LSB) -->
+                <g id="q0-stage">
+                    <path d="M 1250 370 L 1290 380 L 1290 440 L 1250 450 Z" class="fill-amber-100 stroke-gray-800 stroke-2" />
+                    <text x="1260" y="395" class="text-xs fill-gray-700">0</text>
+                    <text x="1260" y="435" class="text-xs fill-gray-700">1</text>
+                    <text x="1300" y="415" class="text-xs fill-gray-700">MUX</text>
+                    
+                    <line x1="1130" y1="615" x2="1230" y2="615" class="wire" />
+                    <line x1="1230" y1="615" x2="1230" y2="425" class="wire" />
+                    <line x1="1230" y1="425" x2="1250" y2="425" class="wire" />
+                    
+                    <line x1="1250" y1="395" x2="1210" y2="395" class="wire" />
+                    <line x1="1210" y1="395" x2="1210" y2="320" class="wire" />
+                    <line x1="1210" y1="320" x2="1480" y2="320" class="wire" />
+                    <line x1="1480" y1="320" x2="1480" y2="525" class="wire" />
+                    
+                    <line x1="160" y1="660" x2="1270" y2="660" class="wire" />
+                    <line x1="1270" y1="660" x2="1270" y2="450" class="wire" />
+                    
+                    <line x1="1290" y1="410" x2="1350" y2="410" class="wire" />
+                    <line x1="1350" y1="410" x2="1350" y2="515" class="wire" />
+                    <line x1="1350" y1="515" x2="1380" y2="515" class="wire-arrow" />
+                    
+                    <rect x="1380" y="490" width="100" height="70" class="fill-blue-50 stroke-gray-800 stroke-2" rx="5" />
+                    <text x="1430" y="520" class="text-sm font-bold fill-gray-800 text-anchor-middle">D FF</text>
+                    <text x="1430" y="540" class="text-xs fill-gray-600 text-anchor-middle">Q0</text>
+                    <text x="1390" y="520" class="text-xs fill-gray-600">D</text>
+                    <text x="1465" y="520" class="text-xs fill-gray-600">Q</text>
+                    <text x="1390" y="550" class="text-xs fill-gray-600">CLK</text>
+                    
+                    <line x1="180" y1="635" x2="1340" y2="635" class="wire" />
+                    <line x1="1340" y1="635" x2="1340" y2="555" class="wire" />
+                    <line x1="1340" y1="555" x2="1380" y2="555" class="wire" />
+                    
+                    <line x1="1480" y1="515" x2="1480" y2="525" class="wire" />
+                    <circle cx="1480" cy="525" r="4" class="dot" />
+                    
+                    <text x="1500" y="530" class="text-sm font-bold fill-gray-800">Q0</text>
+                </g>
+
+                <!-- Pattern Detection Logic -->
+                
+                <!-- Q3 to AND -->
+                <line x1="540" y1="305" x2="700" y2="305" class="wire" />
+                <circle cx="700" cy="305" r="4" class="dot" />
+                <line x1="700" y1="305" x2="700" y2="140" class="wire" />
+                <line x1="700" y1="140" x2="1040" y2="140" class="wire" />
+                <line x1="1040" y1="140" x2="1040" y2="170" class="wire" />
+                
+                <!-- Q2 to NOT -->
+                <line x1="630" y1="525" x2="800" y2="525" class="wire" />
+                <circle cx="800" cy="525" r="4" class="dot" />
+                <line x1="800" y1="525" x2="800" y2="120" class="wire" />
+                <line x1="800" y1="120" x2="900" y2="120" class="wire" />
+                
+                <!-- NOT gate Q2 -->
+                <path d="M 900 105 L 900 135 L 935 120 Z" class="fill-red-100 stroke-gray-800 stroke-2" />
+                <circle cx="940" cy="120" r="5" class="fill-none stroke-gray-800 stroke-2"/>
+                <text x="920" y="100" class="text-xs fill-gray-700">NOT</text>
+                <line x1="945" y1="120" x2="990" y2="120" class="wire" />
+                <line x1="990" y1="120" x2="990" y2="190" class="wire" />
+                <line x1="990" y1="190" x2="1040" y2="190" class="wire" />
+                
+                <!-- Q1 to NOT -->
+                <line x1="1130" y1="525" x2="1180" y2="525" class="wire" />
+                <circle cx="1180" cy="525" r="4" class="dot" />
+                <line x1="1180" y1="525" x2="1180" y2="80" class="wire" />
+                <line x1="1180" y1="80" x2="1280" y2="80" class="wire" />
+                
+                <!-- NOT gate Q1 -->
+                <path d="M 1280 65 L 1280 95 L 1315 80 Z" class="fill-red-100 stroke-gray-800 stroke-2" />
+                <circle cx="1320" cy="80" r="5" class="fill-none stroke-gray-800 stroke-2"/>
+                <text x="1300" y="60" class="text-xs fill-gray-700">NOT</text>
+                <line x1="1325" y1="80" x2="1380" y2="80" class="wire" />
+                <line x1="1380" y1="80" x2="1380" y2="210" class="wire" />
+                <line x1="1380" y1="210" x2="1040" y2="210" class="wire" />
+                
+                <!-- Q0 to AND -->
+                <line x1="1480" y1="525" x2="1530" y2="525" class="wire" />
+                <line x1="1530" y1="525" x2="1530" y2="60" class="wire" />
+                <line x1="1530" y1="60" x2="950" y2="60" class="wire" />
+                <line x1="950" y1="60" x2="950" y2="230" class="wire" />
+                <line x1="950" y1="230" x2="1040" y2="230" class="wire" />
+                
+                <!-- 4-input AND gate -->
+                <path d="M 1040 160 L 1040 240 L 1120 240 Q 1170 240 1170 200 Q 1170 160 1120 160 Z" class="fill-green-100 stroke-gray-800 stroke-2" />
+                <text x="1100" y="188" class="text-xs fill-gray-700 text-anchor-middle">4-input</text>
+                <text x="1100" y="205" class="text-xs fill-gray-700 text-anchor-middle">AND</text>
+                <text x="1100" y="222" class="text-xs fill-gray-700 text-anchor-middle">Gate</text>
+                
+                <line x1="1170" y1="200" x2="1250" y2="200" class="wire-arrow" />
+                
+                <!-- PV Indicator -->
+                <circle cx="1310" cy="200" r="40" class="fill-yellow-300 stroke-gray-800 stroke-4"/>
+                <text x="1310" y="195" class="text-lg font-bold fill-gray-800 text-anchor-middle">PV</text>
+                <text x="1310" y="213" class="text-xs fill-gray-700 text-anchor-middle">Packet</text>
+                <text x="1310" y="228" class="text-xs fill-gray-700 text-anchor-middle">Valid</text>
+
+                <!-- Legend Box -->
+                <rect x="900" y="730" width="450" height="130" class="fill-gray-100 stroke-gray-800 stroke-2" rx="8"/>
+                <text x="1125" y="760" class="text-base font-bold fill-gray-800 text-anchor-middle">Pattern Detection Logic</text>
+                <text x="1125" y="790" class="text-sm fill-gray-700 text-anchor-middle">PV = Q3 · Q̄2 · Q̄1 · Q0</text>
+                <text x="1125" y="815" class="text-sm fill-gray-700 text-anchor-middle">Target Pattern: <tspan class="font-bold">1001</tspan> (MSB first)</text>
+                <text x="1125" y="840" class="text-xs fill-gray-600 text-anchor-middle">PV goes HIGH only when register contains 1001</text>
+
+                <!-- Operation Info Box -->
+                <rect x="30" y="100" width="130" height="170" class="fill-green-50 stroke-gray-800 stroke-2" rx="8"/>
+                <text x="95" y="125" class="text-sm font-bold fill-gray-800 text-anchor-middle">Operation:</text>
+                <text x="40" y="150" class="text-xs font-semibold fill-gray-700">SYNC = 1:</text>
+                <text x="40" y="170" class="text-xs fill-gray-600">• Data shifts</text>
+                <text x="40" y="190" class="text-xs fill-gray-600">• Follows DATA_IN</text>
+                <text x="40" y="220" class="text-xs font-semibold fill-gray-700">SYNC = 0:</text>
+                <text x="40" y="240" class="text-xs fill-gray-600">• Register holds</text>
+                <text x="40" y="260" class="text-xs fill-gray-600">• Ignores DATA_IN</text>
+            </svg>
         </div>
-        <ul>
-          <li>5 Star Hotel</li>
-          <li>1 Activity</li>
-          <li>Selected Meals</li>
-          <li>Airport Pickup and Drop</li>
-          <li>Visa</li>
-        </ul>
-        <div class="price">₹28,950 <span>/ per person</span></div>
-      </div>
-    </div>
-  </section>
-</body>
-</html>
+
+        <!-- Additional Information Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+                <h3 class="text-lg font-bold text-blue-900 mb-2">🔄 Shift Register</h3>
+                <p class="text-sm text-gray-700">4 D flip-flops cascade data from Q3 (MSB) to Q0 (LSB) on each clock edge when SYNC is HIGH.</p>
+            </div>
+            
+            <div class="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+                <h3 class="text-lg font-bold text-green-900 mb-2">⏸️ Hold Function</h3>
+                <p class="text-sm text-gray-700">2-to-1 MUXes enable each flip-flop to hold its value when SYNC is LOW via feedback loops.</p>
+            </div>
+            
+            <div class="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-4">
+                <h3 class="text-lg font-bold text-yellow-900 mb-2">✅ Pattern Detect</h3>
+                <p class="text-sm text-gray-700">Combinational logic checks for pattern 1001. PV light activates on exact match.</p>
+            </div>
+        </div>
+
+        <!-- Timing Example -->
+        <div class="mt-6 bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">📊 Timing Example: Receiving Pattern 1001</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full border-collapse border border-gray-300">
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="border border-gray-300 px-4 py-2 text-sm font-bold">Clock</th>
+                            <th class="border border-gray-300 px-4 py-2 text-sm font-bold">SYNC</th>
+                            <th class="border border-gray-300 px-4 py-2 text-sm font-bold">DATA_IN</th>
+                            <th class="border border-gray-300 px-4 py-2 text-sm font-bold">Q3</th>
+                            <th class="border border-gray-300 px-4 py-2 text-sm font-bold">Q2</th>
+                            <th class="border border-gray-300 px-4 py-2 text-sm font-bold">Q1</th>
+                            <th class="border border-gray-300 px-4 py-2 text-sm font-bold">Q0</th>
+                            <th class="border border-gray-300 px-4 py-2 text-sm font-bold">PV</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white">
+                            <td class="border border-gray-300 px-4 py-2 text-center">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">-</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">-</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center bg-red-100 font-bold">0</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="border border-gray-300 px-4 py-2 text-center">1</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">1</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center font-bold text-blue-600">1</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center font-bold text-blue-600">1</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center bg-red-100 font-bold">0</td>
+                        </tr>
+                        <tr class="bg-white">
+                            <td class="border border-gray-300 px-4 py-2 text-center">2</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center">1</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center font-bold text-blue-600">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center font-bold text-blue-600">0</td>
+                            <td class="border border-gray-300 px-4 py-2 text-center font-bold text-blue-600">1</td>
+                            <td class="border border-gray-300 px-4 py-2 t
