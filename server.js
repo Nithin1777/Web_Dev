@@ -321,20 +321,6 @@ app.use((req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`\n🚀 Seasonal Travel Planner Server is running!`);
-  console.log(`📍 Local: http://localhost:${PORT}`);
-  console.log(`\n📋 Available routes:`);
-  console.log(`   - http://localhost:${PORT}/ (Home)`);
-  console.log(`   - http://localhost:${PORT}/destinations (Destinations)`);
-  console.log(`   - http://localhost:${PORT}/activities (Activity Search)`);
-  console.log(`   - http://localhost:${PORT}/admin (Admin Panel - CRUD)`);
-  console.log(`\n📡 API endpoints:`);
-  console.log(`   - GET /api/activities/search?location=X&month=Y`);
-  console.log(`   - GET /api/activities/all`);
-  console.log(`   - GET /api/activities/:id`);
-  console.log(`   - POST /api/activities (Create)`);
-  console.log(`   - PUT /api/activities/:id (Update)`);
-  console.log(`   - DELETE /api/activities/:id (Delete)`);
-  console.log(`   - GET /api/locations`);
-  console.log(`\nPress Ctrl+C to stop the server.\n`);
+  console.log(`\n Seasonal Travel Planner Server is running!`);
+  console.log(` Local: http://localhost:${PORT}`);
 });

@@ -276,7 +276,7 @@
 
   <div class="admin-container">
     <div class="admin-header">
-      <h1>🛠️ Admin Panel</h1>
+      <h1> Admin Panel</h1>
       <p>Manage your travel activities - Create, Read, Update, and Delete</p>
     </div>
 
@@ -294,13 +294,13 @@
 
     <div class="admin-actions">
       <button class="btn btn-primary" onclick="openCreateModal()">
-        ➕ Add New Activity
+         Add New Activity
       </button>
       <a href="/activities" class="btn btn-secondary">
-        🔍 View Activities Page
+         View Activities Page
       </a>
       <button class="btn btn-secondary" onclick="location.reload()">
-        🔄 Refresh
+         Refresh
       </button>
     </div>
 
@@ -337,10 +337,10 @@
                 <td>
                   <div class="activity-actions">
                     <button class="btn btn-warning" onclick="openEditModal('<%= activity._id %>')">
-                      ✏️ Edit
+                       Edit
                     </button>
                     <button class="btn btn-danger" onclick="deleteActivity('<%= activity._id %>', '<%= activity.name %>')">
-                      🗑️ Delete
+                       Delete
                     </button>
                   </div>
                 </td>
