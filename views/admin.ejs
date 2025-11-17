@@ -3,26 +3,28 @@
   .admin-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 60px 20px 80px;
   }
 
   .admin-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-primary);
     color: white;
-    padding: 30px;
-    border-radius: 15px;
-    margin-bottom: 30px;
+    padding: 36px;
+    border-radius: 24px;
+    margin-bottom: 35px;
     text-align: center;
+    box-shadow: var(--shadow-card);
   }
 
   .admin-header h1 {
     margin: 0 0 10px 0;
-    font-size: 2.5rem;
+    font-size: 2.4rem;
   }
 
   .admin-header p {
     margin: 0;
     opacity: 0.9;
+    font-size: 1.05rem;
   }
 
   .admin-actions {
@@ -91,29 +93,40 @@
   }
 
   .alert {
-    padding: 15px 20px;
-    border-radius: 8px;
+    padding: 18px 22px;
+    border-radius: 16px;
     margin-bottom: 20px;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid transparent;
+    box-shadow: 0 10px 25px rgba(15,23,42,0.1);
   }
 
   .alert-success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background: rgba(46, 196, 182, 0.12);
+    color: #0f9d8a;
+    border-color: rgba(46, 196, 182, 0.3);
   }
 
   .alert-error {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background: rgba(239, 68, 68, 0.12);
+    color: #b91c1c;
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  .alert-icon svg {
+    width: 18px;
+    height: 18px;
   }
 
   .activities-table {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background: rgba(255,255,255,0.96);
+    border-radius: 24px;
+    box-shadow: var(--shadow-card);
     overflow: hidden;
+    border: 1px solid rgba(15,23,42,0.08);
   }
 
   table {
@@ -122,7 +135,7 @@
   }
 
   thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-primary);
     color: white;
   }
 
@@ -140,7 +153,7 @@
   }
 
   tbody tr:hover {
-    background: #f8f9fa;
+    background: rgba(99,102,241,0.08);
   }
 
   .activity-actions {
@@ -173,12 +186,12 @@
   }
 
   .modal-content {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    max-width: 600px;
+    background: #fff;
+    border-radius: 24px;
+    padding: 35px;
+    max-width: 640px;
     width: 100%;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 35px 80px rgba(15, 23, 42, 0.35);
   }
 
   .modal-header {
@@ -234,16 +247,16 @@
 
   .category-badge {
     display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: 6px 16px;
+    border-radius: 999px;
     font-size: 0.85rem;
     font-weight: 600;
-    background: #e9ecef;
-    color: #495057;
+    background: rgba(99,102,241,0.15);
+    color: var(--color-primary);
   }
 
   .price-tag {
-    color: #28a745;
+    color: #10b981;
     font-weight: 600;
   }
 
@@ -254,8 +267,19 @@
   }
 
   .empty-state-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+  }
+
+  .table-location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .table-location .icon-pill {
+    box-shadow: none;
   }
 
   @media (max-width: 768px) {
@@ -282,13 +306,24 @@
 
     <% if (message) { %>
       <div class="alert alert-success">
-        ✓ <%= message %>
+        <span class="icon-pill alert-icon" data-theme="teal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 13l4 4 10-10"></path>
+          </svg>
+        </span>
+        <span><%= message %></span>
       </div>
     <% } %>
 
     <% if (error) { %>
       <div class="alert alert-error">
-        ✗ <%= error %>
+        <span class="icon-pill alert-icon" data-theme="rose" aria-hidden="true">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 6l12 12"></path>
+            <path d="M18 6l-12 12"></path>
+          </svg>
+        </span>
+        <span><%= error %></span>
       </div>
     <% } %>
 
@@ -307,7 +342,14 @@
     <div class="activities-table">
       <% if (activities.length === 0) { %>
         <div class="empty-state">
-          <div class="empty-state-icon">📭</div>
+          <div class="empty-state-icon icon-shell icon-xl" data-theme="teal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 7h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2V7z"></path>
+              <path d="M4 7l8 6 8-6"></path>
+              <path d="M12 13l8 6"></path>
+              <path d="M12 13L4 19"></path>
+            </svg>
+          </div>
           <h3>No Activities Found</h3>
           <p>Start by adding your first activity!</p>
           <button class="btn btn-primary" onclick="openCreateModal()">
@@ -330,7 +372,17 @@
             <% activities.forEach(activity => { %>
               <tr>
                 <td><strong><%= activity.name %></strong></td>
-                <td>📍 <%= activity.location %></td>
+                <td>
+                  <div class="table-location">
+                    <span class="icon-pill icon-xs" data-theme="teal" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 21s6-5.2 6-10a6 6 0 10-12 0c0 4.8 6 10 6 10z"></path>
+                        <circle cx="12" cy="11" r="2.5"></circle>
+                      </svg>
+                    </span>
+                    <span><%= activity.location %></span>
+                  </div>
+                </td>
                 <td><span class="category-badge"><%= activity.category || 'N/A' %></span></td>
                 <td><%= activity.seasonal_months || 'All Year' %></td>
                 <td class="price-tag">$<%= activity.price || 0 %></td>
@@ -404,7 +456,7 @@
 
         <div class="form-actions">
           <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-          <button type="submit" class="btn btn-success" id="submitBtn">💾 Save Activity</button>
+          <button type="submit" class="btn btn-success" id="submitBtn">Save Activity</button>
         </div>
       </form>
     </div>
@@ -416,7 +468,7 @@
       document.getElementById('modalTitle').textContent = 'Add New Activity';
       document.getElementById('activityForm').reset();
       document.getElementById('activityId').value = '';
-      document.getElementById('submitBtn').textContent = '💾 Save Activity';
+      document.getElementById('submitBtn').textContent = 'Save Activity';
       document.getElementById('activityModal').classList.add('active');
     }
 
@@ -437,7 +489,7 @@
           document.getElementById('seasonal_months').value = Array.isArray(activity.seasonal_months) 
             ? activity.seasonal_months.join(', ') 
             : activity.seasonal_months || '';
-          document.getElementById('submitBtn').textContent = '💾 Update Activity';
+          document.getElementById('submitBtn').textContent = 'Update Activity';
           document.getElementById('activityModal').classList.add('active');
         } else {
           alert('Failed to load activity details');

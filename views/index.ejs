@@ -6,6 +6,10 @@
 
     <!-- Hero content -->
     <div class="hero-content">
+      <% if (locals.message) { %>
+        <div class="alert alert-success" style="max-width: 600px; margin: 0 auto 20px;"><%= message %></div>
+      <% } %>
+      
       <h1>Discover Your Next Adventure</h1>
       <p class="hero-subtitle">Find the perfect activities for your destination and season</p>
       
@@ -45,19 +49,32 @@
   <section class="features-section">
     <div class="container">
       <h2>Why Choose Exploreo?</h2>
+      <p class="section-lead">Craft smarter itineraries with curated insights, seasonal guidance, and local expertise that keep every adventure on-theme.</p>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">🌍</div>
+          <div class="feature-icon" aria-hidden="true">
+            <span class="icon-shell icon-lg" data-theme="teal">
+              <i data-lucide="globe-2"></i>
+            </span>
+          </div>
           <h3>Global Destinations</h3>
           <p>Explore activities from destinations around the world</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📅</div>
+          <div class="feature-icon" aria-hidden="true">
+            <span class="icon-shell icon-lg" data-theme="amber">
+              <i data-lucide="calendar"></i>
+            </span>
+          </div>
           <h3>Seasonal Planning</h3>
           <p>Find the best activities for each month of the year</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🎯</div>
+          <div class="feature-icon" aria-hidden="true">
+            <span class="icon-shell icon-lg" data-theme="rose">
+              <i data-lucide="target"></i>
+            </span>
+          </div>
           <h3>Personalized Results</h3>
           <p>Get recommendations tailored to your preferences</p>
         </div>

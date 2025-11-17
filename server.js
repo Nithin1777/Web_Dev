@@ -1,7 +1,10 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const session = require("express-session");
+const bcrypt = require("bcryptjs");
 const db = require("./db/activities");
+const userDb = require("./db/users");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,6 +18,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/HTML", express.static(path.join(__dirname, "HTML")));
+
+// Session configuration
+app.use(
+  session({
+    secret: "your-secret-key-change-in-production",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false, // Set to true in production with HTTPS
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    },
+  })
+);
+
+// Make user available in all templates
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
 
 // Helper function to format activities for display
 function formatActivities(activities) {
@@ -33,6 +55,7 @@ app.get("/", (req, res) => {
   res.render("index", {
     title: "Exploreo - Seasonal Travel Planner",
     page: "home",
+    message: req.query.message || "",
   });
 });
 
@@ -152,9 +175,157 @@ app.get("/api/locations", async (req, res) => {
 
 // Login page (placeholder)
 app.get("/login", (req, res) => {
+  // Redirect if already logged in
+  if (req.session.user) {
+    return res.redirect("/");
+  }
+
   res.render("login", {
     title: "Exploreo - Login",
     page: "login",
+    error: req.query.error || "",
+    message: req.query.message || "",
+  });
+});
+
+// Signup page
+app.get("/signup", (req, res) => {
+  // Redirect if already logged in
+  if (req.session.user) {
+    return res.redirect("/");
+  }
+
+  res.render("signup", {
+    title: "Exploreo - Sign Up",
+    page: "signup",
+    error: req.query.error || "",
+  });
+});
+
+// Handle signup POST
+app.post("/signup", async (req, res) => {
+  try {
+    const { name, email, password, confirmPassword } = req.body;
+
+    // Validation
+    if (!name || !email || !password || !confirmPassword) {
+      return res.redirect(
+        "/signup?error=" + encodeURIComponent("All fields are required")
+      );
+    }
+
+    if (password !== confirmPassword) {
+      return res.redirect(
+        "/signup?error=" + encodeURIComponent("Passwords do not match")
+      );
+    }
+
+    if (password.length < 6) {
+      return res.redirect(
+        "/signup?error=" +
+          encodeURIComponent("Password must be at least 6 characters")
+      );
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create user
+    const newUser = await userDb.createUser({
+      name,
+      email: email.toLowerCase(),
+      password: hashedPassword,
+    });
+
+    // Auto-login after signup
+    req.session.user = {
+      id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
+      role: newUser.role,
+    };
+
+    res.redirect(
+      "/?message=" + encodeURIComponent("Account created successfully!")
+    );
+  } catch (err) {
+    console.error("Signup error:", err);
+
+    if (err.message.includes("already exists")) {
+      return res.redirect(
+        "/signup?error=" + encodeURIComponent("Email already registered")
+      );
+    }
+
+    res.redirect(
+      "/signup?error=" +
+        encodeURIComponent("Failed to create account. Please try again.")
+    );
+  } finally {
+    await userDb.close();
+  }
+});
+
+// Handle login POST
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Validation
+    if (!email || !password) {
+      return res.redirect(
+        "/login?error=" + encodeURIComponent("Email and password are required")
+      );
+    }
+
+    // Find user
+    const user = await userDb.findUserByEmail(email.toLowerCase());
+
+    if (!user) {
+      return res.redirect(
+        "/login?error=" + encodeURIComponent("Invalid email or password")
+      );
+    }
+
+    // Verify password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.redirect(
+        "/login?error=" + encodeURIComponent("Invalid email or password")
+      );
+    }
+
+    // Create session
+    req.session.user = {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+
+    res.redirect(
+      "/?message=" + encodeURIComponent("Welcome back, " + user.name + "!")
+    );
+  } catch (err) {
+    console.error("Login error:", err);
+    res.redirect(
+      "/login?error=" + encodeURIComponent("Login failed. Please try again.")
+    );
+  } finally {
+    await userDb.close();
+  }
+});
+
+// Handle logout
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Logout error:", err);
+    }
+    res.redirect(
+      "/login?message=" + encodeURIComponent("Logged out successfully")
+    );
   });
 });
 
@@ -183,9 +354,13 @@ app.get("/admin", async (req, res) => {
 app.post("/api/activities", async (req, res) => {
   try {
     const activityData = req.body;
-    
+
     // Validate required fields
-    if (!activityData.name || !activityData.location || !activityData.category) {
+    if (
+      !activityData.name ||
+      !activityData.location ||
+      !activityData.category
+    ) {
       return res.status(400).json({
         success: false,
         message: "Missing required fields: name, location, category",
@@ -193,8 +368,13 @@ app.post("/api/activities", async (req, res) => {
     }
 
     // Ensure seasonal_months is an array
-    if (activityData.seasonal_months && typeof activityData.seasonal_months === 'string') {
-      activityData.seasonal_months = activityData.seasonal_months.split(',').map(m => m.trim());
+    if (
+      activityData.seasonal_months &&
+      typeof activityData.seasonal_months === "string"
+    ) {
+      activityData.seasonal_months = activityData.seasonal_months
+        .split(",")
+        .map((m) => m.trim());
     }
 
     const newActivity = await db.createActivity(activityData);
@@ -222,12 +402,17 @@ app.put("/api/activities/:id", async (req, res) => {
     const updateData = req.body;
 
     // Ensure seasonal_months is an array
-    if (updateData.seasonal_months && typeof updateData.seasonal_months === 'string') {
-      updateData.seasonal_months = updateData.seasonal_months.split(',').map(m => m.trim());
+    if (
+      updateData.seasonal_months &&
+      typeof updateData.seasonal_months === "string"
+    ) {
+      updateData.seasonal_months = updateData.seasonal_months
+        .split(",")
+        .map((m) => m.trim());
     }
 
     const result = await db.updateActivity(id, updateData);
-    
+
     if (result.matchedCount === 0) {
       return res.status(404).json({
         success: false,
@@ -257,7 +442,7 @@ app.delete("/api/activities/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await db.deleteActivity(id);
-    
+
     if (result.deletedCount === 0) {
       return res.status(404).json({
         success: false,
@@ -286,7 +471,7 @@ app.get("/api/activities/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const activity = await db.getActivityById(id);
-    
+
     if (!activity) {
       return res.status(404).json({
         success: false,

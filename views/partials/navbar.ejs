@@ -6,7 +6,14 @@
     <a href="/destinations" class="<%= page === 'destinations' ? 'active' : '' %>">Destinations</a>
     <a href="/activities" class="<%= page === 'activities' ? 'active' : '' %>">Activities</a>
     <a href="/admin" class="<%= page === 'admin' ? 'active' : '' %>">Admin</a>
-    <a href="/login" class="<%= page === 'login' ? 'active' : '' %>">Login</a>
-    <a href="/login" class="signup-btn">Sign up</a>
+    
+    <% if (locals.user) { %>
+      <span style="color: #fff; margin-right: 10px;">Welcome, <%= user.name %>!</span>
+      <a href="/logout" class="signup-btn">Logout</a>
+    <% } else { %>
+      <a href="/login" class="<%= page === 'login' ? 'active' : '' %>">Login</a>
+      <a href="/signup" class="signup-btn">Sign up</a>
+    <% } %>
   </div>
 </div>
+
